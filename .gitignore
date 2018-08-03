@@ -1,0 +1,18 @@
+# IDE generated files 
+.idea
+.vscode
+#  end
+__pycache__
+
+# OS generated files 
+.DS_Store
+.DS_Store?
+.Trashes
+ehthumbs.db
+Thumbs.db
+.cache/
+
+# misc
+npm-debug.log
+venv/
+dataset/
