@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 app1 = Flask(__name__)
 
@@ -14,6 +14,10 @@ stores = [
     }
 ]
 
+@app1.route('/')
+def home():
+    return render_template('index.html')
+
 # POST - used to receive data
 # GET - used to send data back only 
 
@@ -23,7 +27,7 @@ def create_store():
     request_data = request.get_json()
     new_store = {
         'name': request_data['name'],
-        'items': []
+        'item': []
     }
     stores.append(new_store)
     return jsonify(new_store)
@@ -32,11 +36,11 @@ def create_store():
 @app1.route('/store/<string:name>')    # 'thhp://127.0.0.1:500/store/some_name'
 def get_store(name):
     # Iterate over stores
-    # if the sotre name matches, returen it
-    # if none match, return an error message
     for store in stores:
-        if store['name'] == name:
-            return (jsonity(store))
+    # if the sotre name matches, returen it
+       if store['name'] == name:
+            return jsonify(store)
+    # if none match, return an error message
     return jsonify({'message': 'store not found'})
 
 # GET /store
@@ -54,7 +58,7 @@ def create_item_in_store(name):
                 'name': request_data['name'],
                 'price': request_data['price']
             }
-            store['items'].append(new_item)
+            store['item'].append(new_item)
             return jsonify(new_item)
 
     return jsonify({'message': 'store not found'})
@@ -62,9 +66,9 @@ def create_item_in_store(name):
 # GET /store/<string:name>/item
 @app1.route('/store/<string:name>/item')
 def get_items_in_store(name):
-    for sotre in stores:
+    for store in stores:
         if store['name'] == name:
-            return jsonify({'items': store['items']})
+            return jsonify({'item': store['item']})
         
     return jsonify ({'message': 'store not found'})
 
