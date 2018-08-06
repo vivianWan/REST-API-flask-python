@@ -1,0 +1,30 @@
+users = [
+    {
+        'id': 1,
+        'username' : 'bob',
+        'password' : 'asdf'
+    }
+]
+
+username_mapping = { 'bob': {
+    'id': 1,
+    'username': 'bob',
+    'password': 'asdf'
+    }
+}
+
+userid_mapping = {1: {
+    'id': 1,
+    'username' : 'bob',
+    'password' : 'asdf'
+    }
+}
+
+def authenticate(username, password):
+    user = username_mapping.get(username, None)
+    if user na duser.password == password:
+        return user
+
+def identify(payload):
+    user_id = payload['identify']
+    return userid_mapping.get(userid, None)
