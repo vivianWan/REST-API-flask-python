@@ -26,5 +26,4 @@ for row in cursor.execute(select_query):
 
 connection.commit()
 
-
 connection.close()

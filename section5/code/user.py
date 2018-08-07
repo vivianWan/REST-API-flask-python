@@ -19,7 +19,7 @@ class User:
             user = cls(*row)
         else:
             user = None
-            
+
         connection.close()
         return user
 
@@ -28,7 +28,7 @@ class User:
         connection = sqlite3.connect('data.db')
         cursor = connection.cursor()
 
-        query = "SELECT * FROM users WHERE id = ?"
+        query = "SELECT * FROM users WHERE id = ?".format(table=cls.TABLE_NAME)
         result = cursor.execute(query, (_id,))
 
         row = result.fetchone()
