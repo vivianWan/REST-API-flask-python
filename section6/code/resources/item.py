@@ -31,7 +31,7 @@ class Item(Resource):
         except:
             return {'message':'An error occurred inseting the item.'}, 500
         
-        return item, 201
+        return item.json, 201
 
     @jwt_required()
     def delete(self, name):
@@ -61,7 +61,8 @@ class Item(Resource):
                 update_item.update()
             except:
                 return {'message':'An error occurred updating the item. '}
-        return update_item
+        return update_item.json()
+
 
 class ItemList(Resource):
     def get(self):
